@@ -415,7 +415,8 @@ class MedicationsVisualizer extends GenericVisualizer {
   static defaultProps = {
     title: 'Medications',
     columns: [
-        { title: 'Medication', versions: '*', format: 'code', getter: c => c.medicationCodeableConcept.coding[0] },
+        // { title: 'Medication', versions: '*', format: 'code', getter: c => c.medicationCodeableConcept.coding[0] },
+        { title: 'Medication', versions: '*', format: 'code', getter: c => c.medicationReference.display },
         { title: 'Date Prescribed', versions: '*', format: 'date', getter: c => c.authoredOn },
         { title: 'Status', 'versions': '*', getter: c => c.status }
       ],
