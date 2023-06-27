@@ -16,7 +16,7 @@ const FORMATTERS = {
   time: (str) => moment(str).format('HH:mm:ss'),
   dateTime: (str) => moment(str).format('YYYY-MM-DD - h:mm:ss a'),
   numberWithCommas: (str) => str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-  code: (code) => `${code.code}: ${code.display ? code.display : ''}`,
+  code: (code) => `${code.code ? code.code : "--" }: ${code.display ? code.display : '' }`,
   period: (period) => `${moment(period.start).format('YYYY-MM-DD - h:mm:ss a')} -> ${moment(period.end).format('YYYY-MM-DD - h:mm:ss a')}`
 };
 
@@ -419,7 +419,7 @@ class MedicationsVisualizer extends GenericVisualizer {
     title: 'Medications',
     columns: [
         // { title: 'Medication', versions: '*', format: 'code', getter: c => c.medicationCodeableConcept.coding[0] },
-        { title: 'Medication', versions: '*', format: 'code', getter: c => c.medicationReference[display] },
+        { title: 'Medication', versions: '*', format: 'code', getter: c => c.medicationReference },
         { title: 'Date Prescribed', versions: '*', format: 'date', getter: c => c.authoredOn },
         { title: 'Status', 'versions': '*', getter: c => c.status }, 
         { title: 'Test column HERE'}
