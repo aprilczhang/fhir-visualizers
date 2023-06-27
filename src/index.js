@@ -254,6 +254,9 @@ class GenericVisualizer extends React.Component {
         <React.Fragment key={this.props.keyFn(line)}>
           <tr onClick={() => this.onRowClick(line)} className={this.rowClass(line)} key={this.props.keyFn(line)}>
             { columns.map((c,i) => {
+                console.log("FHIR VISUALIZER DEBUGGING HERE!! c and i");
+                console.log(c);
+                console.log(i);
                 const formatter = FORMATTERS[c.format];
                 let result;
                 try {
