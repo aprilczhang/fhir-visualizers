@@ -17,7 +17,7 @@ const FORMATTERS = {
   dateTime: (str) => moment(str).format('YYYY-MM-DD - h:mm:ss a'),
   numberWithCommas: (str) => str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
   code: (code) => `${code.code ? code.code : '' }: ${code.display ? code.display : '' }`,
-  medication: (medication) => `${medication.display ? medication.display : '' }`,
+  medication: medication => `${medication.display ? medication.display : ''}`,
   period: (period) => `${moment(period.start).format('YYYY-MM-DD - h:mm:ss a')} -> ${moment(period.end).format('YYYY-MM-DD - h:mm:ss a')}`
 };
 
@@ -419,8 +419,8 @@ class MedicationsVisualizer extends GenericVisualizer {
   static defaultProps = {
     title: 'Medications',
     columns: [
-        { title: 'Medication', versions: '*', format: 'code', getter: c => c.medicationCodeableConcept.coding[0] },
-        { title: 'Medication test', versions: '*', format: 'medication', getter: c => c.medicationReference },
+        { title: 'Medication', versions: '*', format: 'medication', getter: c => c.medicationReference },
+        // { title: 'Medication test', versions: '*', format: 'medication', getter: c => c.medicationReference },
         // { title: 'Medication', versions: '*', format: 'code', getter: c => (c.medicationReference? c.medicationReference : c.medicationCodeableConcept.coding[0]) },
         { title: 'Date Prescribed', versions: '*', format: 'date', getter: c => c.authoredOn },
         { title: 'Status', 'versions': '*', getter: c => c.status }, 
